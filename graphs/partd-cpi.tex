@@ -1,0 +1,47 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        bar width=6pt,
+        ybar,
+        ymajorgrids,
+        ytick={0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0},
+        enlargelimits=0.15,
+        symbolic x coords={%
+            BiModeBP,%
+            TAGE,%
+            MultiperspectivePerceptron8KB,%
+            MultiperspectivePerceptron64KB%
+        },
+        xticklabels={%
+            ,%
+            Bimodal,%
+            TAGE,%
+            8KB Perceptron,%
+            64KB Perceptron%
+        },
+        legend cell align={left},
+        x tick label style={rotate=-30, anchor=west},
+        legend style={at={(1.0, 1.0)}, anchor={north west}}
+    ]
+
+    \foreach \arch  in {arm,x86}
+    \foreach \bench in {crc,susan}
+    {
+        \addplot table[
+            col sep=comma,
+            x={bp_type},
+            y={sim_insts},
+            y expr={\thisrow{system.cpu.numCycles} / \thisrow{sim_insts}},
+        ] {csv/D/\arch-\bench.csv};
+        \edef\entry{\uppercase{\bench}\ running on \uppercase{\arch}}
+        \edef\tmp{\noexpand\addlegendentry{\entry}}\tmp
+    }
+
+    \end{axis}
+\end{tikzpicture}
+\end{document}

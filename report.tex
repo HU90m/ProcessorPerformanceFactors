@@ -4,14 +4,16 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{tikz}
+\usepackage{booktabs}
 \usepackage{pgfplots}
+\usepackage[mode=image|tex]{standalone}
 
 \usepackage{geometry}
 \geometry{
     a4paper,
     portrait,
-    top=1em,
-    bottom=1em,
+    top=3em,
+    bottom=3em,
     left=3em,
     right=3em,
 }
@@ -27,11 +29,9 @@
     stringstyle=\color{stringColour}
 }
 
-
 \title{Processor Performance Factors}
 \author{Sam Nicholson, Francis Wharf, Hugo McNally}
 \date{\today}
-
 
 \begin{document}
 \maketitle
@@ -39,30 +39,19 @@
 
 
 \section{Impact of Cache Size on Processor Performance}
-% This part is 40 marks and should not exceed two pages including figures.
+\input{sections/partA.tex}
 
-%\begin{figure}[H]
-%\centering
-%\inputgraphics[width=25em]{pictures/PartAFig1.png}
-%\caption{
-%    The caption goes here.
-%}
-%\end{figure}
-\input{sections/partA}
-
-
+\newpage
 \section{Impact of Cache Associativity on Processor Performance}
-% This part is 30 marks and should not exceed two pages including figures.
-\input{sections/partB}
+\input{sections/partB.tex}
 
+\newpage
 \section{Impact of Out Of Order CPU model on Processor Performance}
-% This part is 30 marks and should not exceed two pages including figures.
-\input{sections/partC}
+\input{sections/partC.tex}
 
-
+\newpage
 \section{Impact of Branch Predictor Type on Processor Performance}
-% This part is 50 marks and should not exceed two pages including figures.
-\input{sections/partD}
+\input{sections/partD.tex}
 
 
 \end{document}

@@ -1,0 +1,5 @@
+bp_type,system.cpu.numCycles,sim_insts,sim_seconds,system.cpu.dcache.overall_miss_rate::total
+BiModeBP,374444581,719021518,0.187222,0.000236
+TAGE,374440775,719021518,0.187220,0.000236
+MultiperspectivePerceptron8KB,374440889,719021518,0.187220,0.000236
+MultiperspectivePerceptron64KB,376840453,719021518,0.188420,0.000223
