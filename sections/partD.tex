@@ -1,6 +1,82 @@
 % This part is 50 marks and should not exceed two pages including figures.
+
+\subsection{Introduction \& Background}
+% TODO: REFS
+
+When a pipelined CPU comes across a branch instruction, it must normally
+block the pipeline until the outcome of the branch is known, so that the
+correct instructions are fetched. This however is slow and inefficient -
+the earlier parts of the pipeline must sit around idle, while the later
+ones figure out which instructions are next.
+
+A simple solution to this would be to guess the outcome of the branch
+instruction randomly, and assume the outcome until the assumption is
+proven incorrect.
+The pipeline would fill up with instructions that have a \(50\%\) chance
+of being the correct ones, and if they are, the contents of the pipeline
+can simply be discarded.
+This strategy would negate the branch penalty half of the time.
+
+A more advanced approach is branch prediction.
+This technique is used by CPUs to improve their guess as to the outcome of
+a branch instruction.
+Based on information already availiable, the CPU must make a decision about
+the most likely outcome of an upcoming branch instruction. The decision can
+then be used as an assumption to continue filling the pipe with instructions,
+hopefully negating the branch penalty more than half of the time.
+
+\subsection{Techniques}
+
+\subsubsection{Bimodal Predictor}
+% TODO: REFS
+
+A bimodal predictor is a very simple type of predictor.
+The predictor tags every branch instruction with a two bit counter.
+Whenever the particular branch is taken, the counter is incremented,
+and whenever it is not taken, the counter is decremented.
+The counter does not overflow.
+The predictor predicts that a branch will be taken if its counter
+is \(10\) or \(11\), and it predicts that a branch will not be taken
+if its counter is \(00\) or \(01\).
+
+\subsubsection{TAGE Predictor}
+% Refs:
+%    \cite{Seznec2006} a-case-for-tage.pdf
+%    \cite{Seznec2007} the-l-tage-branch-predictor.pdf
+%
+% The former was the paper introducing TAGE, and the latter
+%  expands on it!
+
+The TAGE predictor, or the \textbf{Ta}gged \textbf{Ge}ometric history
+length branch predictor is a more advanced technique for branch
+prediction.
+
+This predictor relies on the assumption that if the same sequence of
+branches happens repeatedly. then the result of the next branch will often
+be the same.
+Furthermore, this predictor relies on the assumption that the longer
+the length of matching past branch history, the higher
+the probability of matching future branches will be.\cite{Seznec2006}
+
+A series of tagged history predictors are used, each using a geometrically
+increasing history length - i.e. of the form
+\(L_i = \left\lceil \alpha^{i-1} \cdot L_0 \right\rceil\).
+If any of the predictors recognize the current branch history,
+then the prediction with the longest history is used.
+But otherwise, a simpler `base' predictor is used, for example a Bimodal
+predictor.\cite{Seznec2007}
+
+\subsubsection{Perceptron Predictor}
+
+\subsection{Simulation}
+
+\subsection{Results}
+
 \begin{figure}
     \centering
     \includestandalone[width=.6\textwidth]{graphs/partd-cpi}
     \caption{A comparison of our CPI results for different branch predictors}
+    \label{fig:partd-cpi}
 \end{figure}
+
+
