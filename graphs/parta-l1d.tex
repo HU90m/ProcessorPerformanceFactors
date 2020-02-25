@@ -1,5 +1,39 @@
 \documentclass[border=5pt]{standalone}
 \usepackage{pgfplots}
+
 \begin{document}
-I am a placeholder for a \(\mathcal{GRAPH}\)
+\begin{tikzpicture}
+    \begin{axis}[
+        axis x line=center,
+        axis y line=center,
+        xmin=0,
+        xmax=34,
+        ymin=2.4,
+        ymax=4.4,
+        xtick={2,4,8,16,32},
+        ytick={2,2.2,...,4.2},
+        ymajorgrids,
+        %enlargelimits=0.15,
+        ylabel={CPI},
+        ylabel style={above left},
+        xlabel={L1D Cache Size (kB)},
+        xlabel style={below right},
+        legend cell align={left},
+        legend style={at={(1.0, 1.0)}, anchor={north west}}
+    ]
+
+    \foreach \bench in {crc,susan}
+    \foreach \arch  in {arm,x86}
+    {
+        \addplot table[
+            col sep=comma,
+            x={L1DSize},
+            y={CPI},
+        ] {csv/A/l1d_size/\arch-\bench.csv};
+        \edef\entry{\uppercase{\bench}\ running on \uppercase{\arch}}
+        \edef\tmp{\noexpand\addlegendentry{\entry}}\tmp
+    }
+
+    \end{axis}
+\end{tikzpicture}
 \end{document}

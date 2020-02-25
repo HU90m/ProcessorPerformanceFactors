@@ -1,0 +1,6 @@
+Benchmark,Processor,L1ISize,CPI
+susan,X86,2,2.951154195
+susan,X86,4,2.951223465
+susan,X86,8,2.950997147
+susan,X86,16,2.950988319
+susan,X86,32,2.950957941

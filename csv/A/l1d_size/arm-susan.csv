@@ -1,0 +1,7 @@
+Benchmark,Processor,L1DSize,CPI
+susan,ARM,2,3.005641242
+susan,ARM,4,2.742192464
+susan,ARM,8,2.563672666
+susan,ARM,16,2.557373995
+susan,ARM,32,2.555935786
+susan,ARM,64,2.555692979
