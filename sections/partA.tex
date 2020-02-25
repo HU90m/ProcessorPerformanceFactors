@@ -1,13 +1,52 @@
 % This part is 40 marks and should not exceed two pages including figures.
 
-%\begin{figure}[H]
-%\centering
-%\inputgraphics[width=25em]{pictures/PartAFig1.png}
-%\caption{
-%    The caption goes here.
-%}
-%\end{figure}
+\subsection{Introduction \& Background}
+
+
+
+\subsection{Method}
+
+The gem5 simulation was performed for both the ARM and X86 architectures, for
+each of the susan and CRC32 benchmark programs. For each of these, the l1i\_size 
+(instruction cache size) argument was iterated through the set [2kB 4kB 8kB 16kB 32kB]
+and the l1d\_size (data cache size) argument was iterated through the set [2kB 4kB 8kB 
+16kB 32kB 64kB].
+
+This produced a dataset of 120 individual simulations with varying data and instruction
+cache sizes.
+Key values from the results of each of these simulations, such as number of cycles, 
+number of instructions, and miss rate were scraped from the output files and assembled 
+in table format.
+
+\subsection{Results \& Analysis}
+
+\subsubsection{Data Cache Size}
+
+From the results, it can be seen that increasing the size of the data cache from 2kB to 
+4kB greatly improves the performance of the processor, however the gains rapidly 
+decrease for larger sizes of data cache.
+
+The X86 chip running the CRC32 benchmark program sees the greatest improvements in 
+performance.
 
 \begin{figure}
-    \includestandalone[width=.85\textwidth]{graphs/test}
+    \centering
+    \includestandalone[width=.6\textwidth]{graphs/parta-l1d}
+    \caption{A comparison of the CPI results for different sizes of data cache}
+    \label{fig:parta-l1d}
 \end{figure}
+
+\subsubsection{Instruction Cache Size}
+
+From the results, it can be seen that increasing the size of the instruction cache 
+slightly improves the performance of the processor.
+
+\begin{figure}
+    \centering
+    \includestandalone[width=.6\textwidth]{graphs/parta-l1i}
+    \caption{A comparison of the CPI results for different sizes of instruction cache}
+    \label{fig:parta-l1i}
+\end{figure}
+
+
+\subsection{Conclusion}
