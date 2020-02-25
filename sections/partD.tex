@@ -30,9 +30,9 @@ hopefully negating the branch penalty more than half of the time.
 \subsubsection{Bimodal Predictor}
 % TODO: REFS
 
-A bimodal predictor is a very simple type of predictor.
+A bimodal predictor is very simple.
 The predictor tags every branch instruction with a two bit counter.
-Whenever the particular branch is taken, the counter is incremented,
+Whenever that particular branch is taken, the counter is incremented,
 and whenever it is not taken, the counter is decremented.
 The counter does not overflow.
 The predictor predicts that a branch will be taken if its counter
@@ -41,11 +41,13 @@ if its counter is \(00\) or \(01\).
 
 \subsubsection{TAGE Predictor}
 % Refs:
-%    \cite{Seznec2006} a-case-for-tage.pdf
-%    \cite{Seznec2007} the-l-tage-branch-predictor.pdf
+%    \cite{Michaud2005} ppm-like-tag-based-predictor.pdf
+%    \cite{Seznec2006}  a-case-for-tage.pdf
+%    \cite{Seznec2007}  the-l-tage-branch-predictor.pdf
 %
-% The former was the paper introducing TAGE, and the latter
-%  expands on it!
+% All three are from the same two authors. The first introduces a
+% similar predictor, the second introduces TAGE, and in the third,
+% they collaborate and make a cute paper together :)
 
 The TAGE predictor, or the \textbf{Ta}gged \textbf{Ge}ometric history
 length branch predictor is a more advanced technique for branch
@@ -63,16 +65,35 @@ increasing history length - i.e. of the form
 \(L_i = \left\lceil \alpha^{i-1} \cdot L_0 \right\rceil\).
 If any of the predictors recognize the current branch history,
 then the prediction with the longest history is used.
-But otherwise, a simpler `base' predictor is used, for example a Bimodal
-predictor.\cite{Seznec2007}
+Otherwise, a simpler `base' predictor is used, for example a Bimodal
+predictor.\cite{Seznec2007}\cite{Michaud2005}
 
 \subsubsection{Perceptron Predictor}
 
+% Neural network
+% Global shift register of branches
+% Simple to implement
+
 \subsection{Simulation}
+
+For this part of the coursework, we invoked the \texttt{gem5} simulator with the
+command \texttt{
+    .../gem5.opt~.../se.py
+    -{}-bp-type=<bp>
+    -{}-cpu-type=DerivO3CPU
+    -{}-caches
+    -{}-l1d\_size=16KB
+    -{}-l1i\_size=16KB
+    -c~<cmd>
+    -o~<args>
+}, for both benchmark commands, on both CPU architectures, with the branch
+predictor types \texttt{BiModeBP}, \texttt{TAGE}, \texttt{TAGE\_SC\_L\_8KB},
+\texttt{TAGE\_SC\_L\_64KB}, \texttt{MultiperspectivePerceptron8KB},
+and~\texttt{MultiperspectivePerceptron64KB}.
 
 \subsection{Results}
 
-\begin{figure}
+\begin{figure}[b]
     \centering
     \includestandalone[width=.6\textwidth]{graphs/partd-cpi}
     \caption{A comparison of our CPI results for different branch predictors}
