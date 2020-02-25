@@ -29,8 +29,8 @@
         legend style={at={(1.0, 1.0)}, anchor={north west}}
     ]
 
-    \foreach \arch  in {arm,x86}
     \foreach \bench in {crc,susan}
+    \foreach \arch  in {arm,x86}
     {
         \addplot table[
             col sep=comma,
