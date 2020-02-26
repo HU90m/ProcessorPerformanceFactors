@@ -118,10 +118,10 @@ how many times a branch has been repeated.
 Such predictors may be termed
 Multiperspective perceptron branch predictors, as they examine multiple
 perspectives of the current situation to conclude whether or not a branch
-is likely.
+is likely.~\cite{Jimenez2014}
 
-Perceptron branch predictors are provided by \texttt{gem5}'s \texttt{MultiperspectivePerceptron8KB}
-and \texttt{MultiperspectivePerceptron64KB} branch predictors.
+\texttt{gem5} provides both the \texttt{MultiperspectivePerceptron8KB}
+and \texttt{MultiperspectivePerceptron64KB} branch predictor types.
  % ToDO: find out implementation details and write
 
 
@@ -144,14 +144,30 @@ and~\texttt{MultiperspectivePerceptron64KB}.
 
 \subsection{Results}
 
-The results of our simulations in terms of CPI are shown in Figure~\ref{fig:partd-cpi}.
+Some of the results of the simulations are shown in Figure~\ref{fig:partd-factors}.
+
+It is clear that the changes in branch predictor have very little effect on the CRC32
+benchmark when compared to the SUSAN benchmark. This is not due to there being more
+branches in the SUSAN benchmark. In fact, \(20.0\%\) of ARM and \(18.5\%\) of X86
+instructions were branches for CRC32, against only \(11.2\%\) and \(7.4\%\) for SUSAN.
+The main difference lies in the predictability of the branches.
+The CRC algorithm
+consists of a tight loop, iterating through the data character by character,
+making the branches very easy to predict, whereas the SUSAN algorithm has
+many branches that depend on the data itself, which are far harder to predict.
+
+A static branch predictor, where the branch instructions in the main loop of the CRC32
+algorithm are assumed to always be taken would likely perform just as well as any of
+these methods. This suggests a reason why the 64KB perceptron performed so poorly on
+CRC, in Figure~\ref{fig:partd-mispredict}.
+A large neural net would likely be prone to overfitting for such a simple task.
 
 % OBSERVATIONS
 %  Only SUSAN really changes, not CRC
-%  arm crc has  133168908 branches
-%  arm susan has 27942399 branches
-%  x86 crc has  133165845 branches
-%  x86 susan has 27114764 branches
+%  arm crc has  133168908 branches/665779085 insts = 20.001%
+%  arm susan has 27942399 branches/249571591 insts = 11.196%
+%  x86 crc has  133165845 branches/719021518 insts = 18.520%
+%  x86 susan has 27114764 branches/364696464 insts =  7.435%
 %
 %  CRC has far more branches but mispredict rate is almost always 0%
 %  hence no improvement.
@@ -164,7 +180,7 @@ The results of our simulations in terms of CPI are shown in Figure~\ref{fig:part
 %
 % TODO: Look at all the actual implementations and see what is inside
 
-\begin{figure}[b]%
+\begin{figure}[b!]%
 \begin{subfigure}{.5\textwidth}
     \centering
     \includestandalone[width=\textwidth]{graphs/partd-cpi}
