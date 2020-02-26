@@ -1,0 +1,54 @@
+
+\newcommand{\partdgraph}[1]{
+
+\begin{tikzpicture}
+    \begin{axis}[
+        width=30em,
+        bar width=7pt,
+        ybar,
+        ymajorgrids,
+        enlargelimits=0.15,
+        nodes near coords,
+        every node near coord/.append style = {
+            rotate=90,
+            anchor=west
+        },
+        symbolic x coords={%
+            BiModeBP,%
+            TAGE,%
+            TAGE_SC_L_8KB,%
+            TAGE_SC_L_64KB,%
+            MultiperspectivePerceptron8KB,
+            MultiperspectivePerceptron64KB
+        },
+        xticklabels={%
+            ,%
+            Bimodal,%
+            TAGE,%
+            8KB TAGE,%
+            64KB TAGE,%
+            8KB Perceptron,%
+            64KB Perceptron%
+        },
+        legend cell align={left},
+        x tick label style={rotate=-30, anchor=west},
+        legend style={at={(1.0, -0.5)}, anchor={north}}
+    ]
+
+    \foreach \bench in {crc,susan}
+    \foreach \arch  in {arm,x86}
+    {
+        \addplot table[
+            col sep=comma,
+            x={bp_type},
+            y={sim_insts},
+            y expr={#1},
+        ] {csv/D/\arch-\bench.csv};
+        \edef\entry{\uppercase{\bench}\ running on \uppercase{\arch}}
+        \edef\tmp{\noexpand\addlegendentry{\entry}}\tmp
+    }
+
+    \end{axis}
+\end{tikzpicture}
+
+}
