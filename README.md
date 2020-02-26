@@ -4,13 +4,35 @@ The coursework instructions can be found [here.](https://secure.ecs.soton.ac.uk/
 
 # Compilation
 
-To compile, run the command `pdflatex --shell-escape report.tex`, and
-`report.pdf` should appear!
+To compile, you can run the commands
+```
+pdflatex --shell-escape report.tex
+pdflatex --shell-escape report.tex
+bibtex report
+pdflatex --shell-escape report.tex
+```
+
+and `report.pdf` should appear!
+
+Alternatively, I reccomend using the command
+```
+latexmk --pdf --shell-escape report --pvc -r <(echo '$pdf_previewer = "zathura"')
+```
+or something like it.
+This will auto-recompile and display any changes as you make them.
+
+# Graphs
 
 Each of the graphs is compiled seperately using the
 [standalone package](https://ctan.org/pkg/standalone?lang=en). You can
 edit the line `\usepackage[mode=...]{standalone}` in `report.tex` to
 change the method of compilation, if you need that.
+
+# Sections
+
+Each of the sections has a file in the directory `sections/`. The file is
+simply input into the main report.tex file, and therefore is not a complete
+LaTeX document.
 
 # Structure
 
