@@ -1,9 +1,16 @@
 \documentclass[border=5pt]{standalone}
 \usepackage{pgfplots}
 
+
 \begin{document}
 \begin{tikzpicture}
     \begin{axis}[
+        cycle list={
+            cyan,mark=triangle*\\
+            orange,mark=triangle*\\
+            cyan,mark=*\\
+            orange,mark=*\\
+        },
         axis x line=center,
         axis y line=center,
         xmin=0,
