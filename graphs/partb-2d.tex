@@ -10,7 +10,7 @@
             colorbar style={
                 xlabel={D-Cache Miss Rate (\%)},
                 xlabel style={at={(0.5, 2.0)}, anchor={south}},
-                at={(0.5, -0.4)},
+                at={(0.5, -0.35)},
                 anchor={north}
             },
             colormap/viridis,
@@ -23,7 +23,7 @@
             ymax=96
         ]
             \addplot3[
-                surf,
+                surf
             ] table [x=CacheLineSize, y=Association, z expr={100*\thisrow{DCacheMissRate}}, col sep=comma] {#1};
         \end{axis}
     \end{tikzpicture}

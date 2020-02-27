@@ -10,27 +10,27 @@ As the level decreases, the cache size gets smaller but its access time becomes 
 Excluding registers, level 1 cache is the fastest type of memory and in order to maximize
 its speed it is placed inside the processor.
 Access time for level 1 cache is in the order of 1-2 clock cycles compared to 100 cycles
-to access main memory, the place where currently running programs and all the working 
+to access main memory, the place where currently running programs and all the working
 data are stored.
 
-Cache can be split into two types, one for storing instructions of the programs the 
+Cache can be split into two types, one for storing instructions of the programs the
 processor is running, and one for storing the data the processor is manipulating.
 These are respectively named Instruction Cache and Data Cache.
 
-In this experiment, we are analysing the effect of increasing the size of both the 
+In this experiment, we are analysing the effect of increasing the size of both the
 Level 1 Instruction Cache and the Level 1 Data Cache.
 
 \subsection{Method}
 
-The gem5 simulation was performed for both the ARM and X86 architectures, for
-each of the susan and CRC32 benchmark programs.
-For each of these combinations, the l1i\_size (instruction cache size) argument was 
-iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB\} and the l1d\_size (data cache size) 
+The \texttt{gem5} simulation was performed for both the ARM and X86 architectures, for
+each of the SUSAN and CRC32 benchmark programs.
+For each of these combinations, the l1i\_size (instruction cache size) argument was
+iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB\} and the l1d\_size (data cache size)
 argument was iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB, 64kB\}.
 
 \begin{lstlisting}[
     language=beef,
-    caption={The command used to invoke the \texttt{gem5} simulation for the susan benchmark.}
+    caption={The command used to invoke the \texttt{gem5} simulation for the SUSAN benchmark.}
 ]
 ./build/${architecture}/gem5.opt configs/example/se.py --l1d_size=${l1d} --l1i_size=${l1i} --caches --cpu-type=TimingSimpleCPU -c ../mibench/automotive/susan/susan -o "../mibench/automotive/susan/input_large.pgm output_large.smoothing.pgm -s"
 \end{lstlisting}

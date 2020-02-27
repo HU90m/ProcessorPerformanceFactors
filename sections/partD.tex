@@ -15,12 +15,12 @@ proven incorrect.
 The pipeline would fill up with instructions that have a \(50\%\) chance
 of being incorrect, and if they are, the contents of the pipeline
 can simply be discarded.
-This strategy would negate the branch penalty half of the time.
+This strategy would negate this `branch penalty' half of the time.
 
-A more advanced approach is branch prediction.
+Branch prediction is a better approach.
 This technique is used by CPUs to improve their guess as to the outcome of
 a branch instruction.
-Based on information already availiable, the CPU must make a decision about
+Based on information already available, the CPU must make a decision about
 the most likely outcome of an upcoming branch instruction. The decision can
 then be used as an assumption to continue filling the pipe with instructions,
 hopefully negating the branch penalty more than half of the time.
@@ -31,13 +31,13 @@ hopefully negating the branch penalty more than half of the time.
 % TODO: REFS
 
 A bimodal predictor is very simple.
-The predictor tags every branch instruction with a two bit counter.
+Each branch instruction is associated with a two bit counter.
 Whenever that particular branch is taken, the counter is incremented,
 and whenever it is not taken, the counter is decremented.
 The counter does not overflow.
 The predictor predicts that a branch will be taken if its counter
 is \(10\) or \(11\), and it predicts that a branch will not be taken
-if its counter is \(00\) or \(01\).
+if its counter is \(00\) or \(01\).~\cite{Mcfarling1993}
 
 \subsubsection{TAGE Predictor}
 % Refs:
@@ -54,16 +54,16 @@ length branch predictor is a more advanced technique for branch
 prediction.
 
 This predictor relies on the assumption that if the same sequence of
-branches happens repeatedly, then the result of the next branch will often
-be the same.
+branches happens twice, then the result of the next branch will often
+be the same in both instances.
 Furthermore, this predictor relies on the assumption that the longer
-the length of matching past branch history, the higher
-the probability of matching future branches will be.~\cite{Seznec2006}
+the length of matching past history, the higher
+the probability of matching future branches.~\cite{Seznec2006}
 
 A series of tagged history predictors are used, each using a geometrically
 increasing history length - i.e. of the form
 \(L_i = \left\lceil \alpha^{i-1} \cdot L_0 \right\rceil\).
-If any of the predictors recognize the current branch history,
+If any of the predictors recognise the current branch history,
 then the prediction with the longest history is used.
 Otherwise, a simpler `base' predictor is used, for example a Bimodal
 predictor.~\cite{Seznec2007,Michaud2005}
@@ -98,12 +98,12 @@ be calculated as shown in Equation~\ref{eq:perceptron}.
 
 This neural network can be applied to branch prediction by interpreting
 \(\hat{y} > 0\) as meaning a branch is likely, and \(\hat{y} < 0\) as meaning
-a branch is unlikely. 
+a branch is unlikely.
 Furthermore, a rough and very efficient form of gradient
 descent can be applied to the network, by incrementing all weights whose predictors
 have signs matching the actual value of \(y\), and decrementing all weights which
-do not. 
-A set of weights can be learned seperately for each branch 
+do not.
+A set of weights can be learned separately for each branch
 instruction.~\cite{Jimenez2001}
 
 In the simplest perceptron branch predictors, the predictor values of \(x_i\)
@@ -116,7 +116,7 @@ factors. For example a local shift register of branch outcomes for the specific
 branch that is being predicted, previous branch addresses, and counters for
 how many times a branch has been repeated.
 Such predictors may be termed
-Multiperspective perceptron branch predictors, as they examine multiple
+Multi-perspective perceptron branch predictors, as they examine multiple
 perspectives of the current situation to conclude whether or not a branch
 is likely.~\cite{Jimenez2014}
 
@@ -126,6 +126,25 @@ and \texttt{MultiperspectivePerceptron64KB} branch predictor types.
 
 
 \subsection{Simulation}
+\begin{figure}[b!]%
+\hfill%
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partd-cpi}
+    \caption{CPI}
+    \label{fig:partd-cpi}
+\end{subfigure}%
+\hfill%
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partd-mispredict}
+    \caption{Misprediction rate (\%)}
+    \label{fig:partd-mispredict}
+\end{subfigure}%
+\hfill\null%
+\caption{A comparison of performance factors for CPUs with different branch predictors.}
+\label{fig:partd-factors}
+\end{figure}
 
 For this part of the coursework, the \texttt{gem5} simulator was invoked with the
 command shown in Listing \ref{partD-cmd},
@@ -170,7 +189,7 @@ to make very few mispredictions on the CRC benchmark, explaining the small size 
 differences in performance.
 The poor performance of the 64KB perceptron
 on the CRC benchmark in Figure~\ref{fig:partd-mispredict}, could be explained
-by a large neural net being prone to overfitting for such a simple task.~\cite{Engin2004,Culpepper2005}
+by a large neural net being prone to over-fitting for such a simple task.~\cite{Engin2004,Culpepper2005}
 
 In terms of branch mispredictions, the best performing predictor was the 8KB TAGE
 predictor. This makes sense, as the design is much more sophisticated than a simple
@@ -208,20 +227,4 @@ appears to be the most performant.
 %
 % TODO: Look at all the actual implementations and see what is inside
 
-\begin{figure}[b!]%
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includestandalone[width=\textwidth]{graphs/partd-cpi}
-    \caption{CPI}
-    \label{fig:partd-cpi}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includestandalone[width=\textwidth]{graphs/partd-mispredict}
-    \caption{Mispredict rates (\%)}
-    \label{fig:partd-mispredict}
-\end{subfigure}%
-\caption{A comparison of performance factors for CPUs with different branch predictors.}
-\label{fig:partd-factors}
-\end{figure}
 
