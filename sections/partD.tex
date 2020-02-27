@@ -128,19 +128,20 @@ and \texttt{MultiperspectivePerceptron64KB} branch predictor types.
 \subsection{Simulation}
 
 For this part of the coursework, the \texttt{gem5} simulator was invoked with the
-command \texttt{
-    .../gem5.opt~.../se.py
-    -{}-bp-type=<bp>
-    -{}-cpu-type=DerivO3CPU
-    -{}-caches
-    -{}-l1d\_size=16KB
-    -{}-l1i\_size=16KB
-    -c~<cmd>
-    -o~<args>
-}, for both benchmark commands, on both CPU architectures, with the branch
+command shown in Listing \ref{partD-cmd},
+for both benchmark commands, on both CPU architectures, with the branch
 predictor types \texttt{BiModeBP}, \texttt{TAGE},
 \texttt{MultiperspectivePerceptron8KB},
 and~\texttt{MultiperspectivePerceptron64KB}.
+
+
+\begin{lstlisting}[
+    label=partD-cmd,
+    language=beef,
+    caption={The command used to invoke the \texttt{gem5} simulation for part D.}
+]
+.../gem5.opt .../se.py --bp-type=${bp} --cpu-type=DerivO3CPU --caches --l1d_size=16KB --l1i_size=16KB -c ${cmd} -o ${args}
+\end{lstlisting}
 
 \subsection{Results}
 

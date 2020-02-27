@@ -32,16 +32,22 @@ susan and CRC32 benchmark programs.
 In every simulation, the size of the instruction cache was set to 8kB and the size 
 of the data cache was set to 16kB.
 For each of these, the l1d\_assoc (data cache association) argument was iterated 
-through the set [1 2 4 8 16 32 64] and the cacheline\_size (cache line size) argument 
-was iterated through the set [16 32 64 128].
+through the set \{1, 2, 4, 8, 16, 32, 64\} and the cacheline\_size (cache line size) argument 
+was iterated through the set \{16kB, 32kB, 64kB, 128kB\}.
 
-The command used to invoke the \texttt{gem5} simulation for the susan benchmark was
+\begin{lstlisting}[
+    language=beef,
+    caption={The command used to invoke the \texttt{gem5} simulation for the susan benchmark.}
+]
+./build/${architecture}/gem5.opt configs/example/se.py --l1d_size=16kB --l1i_size=8kB --caches --l1d_assoc=${assoc} --cacheline_size=${cacheline} --cpu-type=TimingSimpleCPU -c ../mibench/automotive/susan/susan -o "../mibench/automotive/susan/input_large.pgm output_large.smoothing.pgm -s"
+\end{lstlisting}
 
-\texttt{./build/\${architecture}/gem5.opt configs/example/se.py --l1d\_size=16kB --l1i\_size=8kB --caches --l1d\_assoc=\${assoc} --cacheline\_size=\${cacheline} --cpu-type=TimingSimpleCPU -c ../mibench/automotive/susan/susan -o "../mibench/automotive/susan/input\_large.pgm output\_large.smoothing.pgm -s"}
-
-and for the CRC32 benchmark it was
-
-\texttt{./build/\${architecture}/gem5.opt configs/example/se.py --l1d\_size=16kB --l1i\_size=8kB --caches --l1d\_assoc=\${assoc} --cacheline\_size=\${cacheline} --cpu-type=TimingSimpleCPU -c ../mibench/telecomm/CRC32/crc -o "../mibench/telecomm/adpcm/data/large.pcm > output\_large.txt"}
+\begin{lstlisting}[
+    language=beef,
+    caption={The command used to invoke the \texttt{gem5} simulation for the CRC32 benchmark.}
+]
+./build/${architecture}/gem5.opt configs/example/se.py --l1d_size=16kB --l1i_size=8kB --caches --l1d_assoc=${assoc} --cacheline_size=${cacheline} --cpu-type=TimingSimpleCPU -c ../mibench/telecomm/CRC32/crc -o "../mibench/telecomm/adpcm/data/large.pcm > output_large.txt"
+\end{lstlisting}
 
 This produced a dataset of 56 individual simulations with varying cache line sizes and 
 associativities.

@@ -17,24 +17,32 @@ Cache can be split into two types, one for storing instructions of the programs 
 processor is running, and one for storing the data the processor is manipulating.
 These are respectively named Instruction Cache and Data Cache.
 
-In this experiment, we are analyzing the effect of increasing the size of both the 
+In this experiment, we are analysing the effect of increasing the size of both the 
 Level 1 Instruction Cache and the Level 1 Data Cache.
 
 \subsection{Method}
 
 The gem5 simulation was performed for both the ARM and X86 architectures, for
-each of the susan and CRC32 benchmark programs. 
+each of the susan and CRC32 benchmark programs.
 For each of these combinations, the l1i\_size (instruction cache size) argument was 
-iterated through the set [2kB 4kB 8kB 16kB 32kB]and the l1d\_size (data cache size) 
-argument was iterated through the set [2kB 4kB 8kB 16kB 32kB 64kB].
+iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB\} and the l1d\_size (data cache size) 
+argument was iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB, 64kB\}.
 
-The command used to invoke the \texttt{gem5} simulation for the susan benchmark was
+\begin{lstlisting}[
+    language=beef,
+    caption={The command used to invoke the \texttt{gem5} simulation for the susan benchmark.}
+]
+./build/${architecture}/gem5.opt configs/example/se.py --l1d_size=${l1d} --l1i_size=${l1i} --caches --cpu-type=TimingSimpleCPU -c ../mibench/automotive/susan/susan -o "../mibench/automotive/susan/input_large.pgm output_large.smoothing.pgm -s"
+\end{lstlisting}
 
-\texttt{./build/\${architecture}/gem5.opt configs/example/se.py --l1d\_size=\${l1d} --l1i\_size=\${l1i} --caches --cpu-type=TimingSimpleCPU -c ../mibench/automotive/susan/susan -o "../mibench/automotive/susan/input\_large.pgm output\_large.smoothing.pgm -s"}
+\begin{lstlisting}[
+    language=beef,
+    caption={The command used to invoke the \texttt{gem5} simulation for the CRC32 benchmark.}
+]
+./build/${architecture}/gem5.opt configs/example/se.py --l1d_size=${l1d} --l1i_size=${l1i} --caches --cpu-type=TimingSimpleCPU -c ../mibench/telecomm/CRC32/crc -o "../mibench/telecomm/adpcm/data/large.pcm > output_large.txt"
+\end{lstlisting}
 
-and for the CRC32 benchmark it was
 
-\texttt{./build/\${architecture}/gem5.opt configs/example/se.py --l1d\_size=\${l1d} --l1i\_size=\${l1i} --caches --cpu-type=TimingSimpleCPU -c ../mibench/telecomm/CRC32/crc -o "../mibench/telecomm/adpcm/data/large.pcm > output\_large.txt"}
 
 This produced a dataset of 120 individual simulations with varying data and instruction
 cache sizes.
