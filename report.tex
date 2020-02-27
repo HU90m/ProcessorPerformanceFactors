@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[10pt,titlepage]{article}
 \usepackage{mathtools}
 \usepackage{color}
 \usepackage{graphicx}
@@ -9,27 +9,13 @@
 \usepackage{cite}
 \usepackage{subcaption}
 \usepackage[mode=tex]{standalone}
-\pagestyle{empty}
+
 \emergencystretch=10em
 \usepackage{geometry}
 \geometry{
     a4paper,
     portrait,
-    top=3em,
-    bottom=3em,
-    left=3em,
-    right=3em,
-}
-
-\usepackage{listings}
-\definecolor{commentColour}{rgb}{0,0.6,0}
-\definecolor{numberColour}{rgb}{0.5,0.5,0.5}
-\definecolor{stringColour}{rgb}{0.58,0,0.82}
-\lstset{
-    commentstyle=\color{commentColour},
-    keywordstyle=\color{blue},
-    numberstyle=\tiny\color{numberColour},
-    stringstyle=\color{stringColour}
+    margin=5em,
 }
 
 \title{Processor Performance Factors}
@@ -40,7 +26,6 @@
 \maketitle
 \appendix % gives us letters not numbers (and we don't need an appendix anyway)
 
-\newpage
 \section{Impact of Cache Size on Processor Performance}
 \input{sections/partA.tex}
 
