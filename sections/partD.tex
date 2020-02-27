@@ -146,11 +146,16 @@ and~\texttt{MultiperspectivePerceptron64KB}.
 
 Some of the results of the simulations are shown in Figure~\ref{fig:partd-factors}.
 
-It is clear that the changes in branch predictor have very little effect on the CRC32
+Comparing Figures~\ref{fig:partd-mispredict} and \ref{fig:partd-cpi}, CPI and
+misprediction rates appear to be clearly correlated. This is what we would expect, as
+mispredicting a branch would incur a performance penalty. Branch misprediction rate is
+therefore a useful performance metric for a branch predictor.
+
+The changes in branch predictor have very little effect on the CRC32
 benchmark when compared to the SUSAN benchmark. This is not due to there being more
 branches in the SUSAN benchmark. In fact, \(20.0\%\) of ARM and \(18.5\%\) of X86
 instructions were branches for CRC32, against only \(11.2\%\) and \(7.4\%\) for SUSAN.
-The main difference lies in the predictability of the branches.
+The main difference between the benchmarks is the predictability of the branches.
 The CRC algorithm
 consists of a tight loop, iterating through the data character by character,
 making the branches very easy to predict, whereas the SUSAN algorithm has
@@ -158,9 +163,31 @@ many branches that depend on the data itself, which are far harder to predict.
 
 A static branch predictor, where the branch instructions in the main loop of the CRC32
 algorithm are assumed to always be taken would likely perform just as well as any of
-these methods. This suggests a reason why the 64KB perceptron performed so poorly on
-CRC, in Figure~\ref{fig:partd-mispredict}.
-A large neural net would likely be prone to overfitting for such a simple task.
+the predictors being tested.
+The ease of predicting the branches causes every predictor except the 64KB perceptron
+to make very few mispredictions on the CRC benchmark, explaining the small size of
+differences in performance.
+The poor performance of the 64KB perceptron
+on the CRC benchmark in Figure~\ref{fig:partd-mispredict}, could be explained
+by a large neural net being prone to overfitting for such a simple task.~\cite{Engin2004,Culpepper2005}
+
+In terms of branch mispredictions, the best performing predictor was the 8KB TAGE
+predictor. This makes sense, as the design is much more sophisticated than a simple
+bimodal predictor.
+A reason for the poor performance of the perceptrons may be because they need time to learn
+how to accurately predict the benchmarks. Perhaps if we were to use an even longer test,
+or to measure the misprediction rates only after an initial learning period, they would
+perform significantly better. The low misprediction rates of the 8KB TAGE show that it
+is possible to almost perfectly predict the branches for these benchmarks, so an error-filled
+period of initial learning will be significantly detrimental to any other branch predictor
+in comparison.
+Perhaps in a situation where a CPU is running for a far longer time, with a more
+widely spanning codebase than these benchmarks, the perceptron could
+eventually pick out more subtly correlated features with branches, and eventually
+have the lowest misprediction rates, but in this case, a TAGE branch predictor
+appears to be the most performant.
+
+
 
 % OBSERVATIONS
 %  Only SUSAN really changes, not CRC

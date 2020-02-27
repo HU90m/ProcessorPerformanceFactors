@@ -1,11 +1,17 @@
-@article{Michaud2005,
-abstract = {This paper describes cbpl.5, the tag-based, global-history predictor derived from PPM that was rank five at the first Championship Branch Prediction competition. This predictor is a particular instance of a family of predictors which we call GPPM. We introduce GPPM-ideal, an ideal GPPM predictor. It is possible to derive cbp1.5 from GPPM-ideal by introducing a series of degradations corresponding to real-life constraints. We characterize cbp1.5 by quantifying the impact of each degradation on the distributed CBP traces.},
-author = {Michaud, Pierre},
-file = {:home/xeom/src/ProcessorPerformanceFactors/lit/ppm-like-tag-based-predictor.pdf:pdf},
-journal = {Journal of Instruction-Level Parallelism},
-title = {{A PPM-like, tag-based branch predictor}},
-volume = {7},
+@article{Culpepper2005,
+author = {Culpepper, B. J and Gondree, M.},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/svms-for-improved-branch-prediction.pdf:pdf},
+journal = {University of California, UCDavis, USA, ECS201A Technical Report},
+pages = {1--9},
+title = {{SVMs for Improved Branch Prediction}},
+url = {http://wwwcsif.cs.ucdavis.edu/{~}gondree/papers/gondree{\_}201a{\_}report{\_}04.pdf},
 year = {2005}
+}
+@misc{Engin2004,
+author = {Engin, Ipek and McKee, Sally A. and Schulz, Martin and David, Shai Ben},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/on-accurate-and-efficient-perceptron.pdf:pdf},
+title = {{On Accurate and Efficient Perceptron-Based Branch Prediction}},
+year = {2004}
 }
 @article{Jimenez2014,
 abstract = {I present a branch predictor based on the idea of view-ing branch history from multiple perspectives, combining perceptron-based prediction and TAGE. A hashed perceptron predictor uses previous outcomes and addresses of branches organized in ways beyond the traditional global and local his-tory. This multiperspective perceptron predictor with TAGE achieves a mean mispredictions per 1000 instruction (MPKI) rate of 5.226 given an 8.25KB hardware budget, 4.048 for a 64.25KB hardware budget, and 2.967 for an unlimited hard-ware budget.},
@@ -27,15 +33,14 @@ pages = {197--206},
 title = {{Dynamic branch prediction with perceptrons}},
 year = {2001}
 }
-@article{Seznec2006,
-abstract = {It is now widely admitted that in order to provide state-of-the-art accuracy, a conditional branch predictor must combine several predictions. Recent research has shown that an adder tree is a very effective approach for the prediction combination function. In this paper, we present a more cost effective solution for this prediction combination function for predictors relying on several predictor components indexed with different history lengths. Using GEometric history length as the O-GEHL predictor, the TAGE predictor uses (partially) tagged components as the PPM-like predictor. TAGE relies on (partial) hit-miss detection as the prediction computation function. TAGE provides state-of-the-art prediction accuracy on conditional branches. In particular, at equivalent storage budgets, the TAGE predictor significantly outperforms all the predictors that were presented at the Championship Branch Prediction in december 2004. The accuracy of the prediction of the targets of indirect branches is a major issue on some applications. We show that the principles of the TAGE predictor can be directly applied to the prediction of indirect branches. The ITTAGE predictor (Indirect Target TAgged GEometric history length) significantly outperforms previous state-of-the-art in-direct target branch predictors. Both TAGE and ITTAGE predictors feature tagged predictor components indexed with distinct history lengths forming a geometric series. They can be associated in a single cost-effective predictor, sharing tables and predictor logic, the COTTAGE predictor (Conditional and indirect Target TAgged GEometric history length). {\textcopyright} 2006 AI Access Foundation and Morgan Kaufmann Publishers. All rights reserved.},
-author = {Seznec, Andr{\'{e}} and Michaud, Pierre},
-file = {:home/xeom/src/ProcessorPerformanceFactors/lit/a-case-for-tage.pdf:pdf},
+@article{Michaud2005,
+abstract = {This paper describes cbpl.5, the tag-based, global-history predictor derived from PPM that was rank five at the first Championship Branch Prediction competition. This predictor is a particular instance of a family of predictors which we call GPPM. We introduce GPPM-ideal, an ideal GPPM predictor. It is possible to derive cbp1.5 from GPPM-ideal by introducing a series of degradations corresponding to real-life constraints. We characterize cbp1.5 by quantifying the impact of each degradation on the distributed CBP traces.},
+author = {Michaud, Pierre},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/ppm-like-tag-based-predictor.pdf:pdf},
 journal = {Journal of Instruction-Level Parallelism},
-pages = {1--23},
-title = {{A case for (partially) TAgged GEometric history length branch prediction}},
-volume = {8},
-year = {2006}
+title = {{A PPM-like, tag-based branch predictor}},
+volume = {7},
+year = {2005}
 }
 @article{Seznec2007,
 author = {Seznec, Andre},
@@ -45,4 +50,14 @@ pages = {1--13},
 title = {{The L-TAGE Branch Predictor}},
 volume = {9},
 year = {2007}
+}
+@article{Seznec2006,
+abstract = {It is now widely admitted that in order to provide state-of-the-art accuracy, a conditional branch predictor must combine several predictions. Recent research has shown that an adder tree is a very effective approach for the prediction combination function. In this paper, we present a more cost effective solution for this prediction combination function for predictors relying on several predictor components indexed with different history lengths. Using GEometric history length as the O-GEHL predictor, the TAGE predictor uses (partially) tagged components as the PPM-like predictor. TAGE relies on (partial) hit-miss detection as the prediction computation function. TAGE provides state-of-the-art prediction accuracy on conditional branches. In particular, at equivalent storage budgets, the TAGE predictor significantly outperforms all the predictors that were presented at the Championship Branch Prediction in december 2004. The accuracy of the prediction of the targets of indirect branches is a major issue on some applications. We show that the principles of the TAGE predictor can be directly applied to the prediction of indirect branches. The ITTAGE predictor (Indirect Target TAgged GEometric history length) significantly outperforms previous state-of-the-art in-direct target branch predictors. Both TAGE and ITTAGE predictors feature tagged predictor components indexed with distinct history lengths forming a geometric series. They can be associated in a single cost-effective predictor, sharing tables and predictor logic, the COTTAGE predictor (Conditional and indirect Target TAgged GEometric history length). {\textcopyright} 2006 AI Access Foundation and Morgan Kaufmann Publishers. All rights reserved.},
+author = {Seznec, Andr{\'{e}} and Michaud, Pierre},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/a-case-for-tage.pdf:pdf},
+journal = {Journal of Instruction-Level Parallelism},
+pages = {1--23},
+title = {{A case for (partially) TAgged GEometric history length branch prediction}},
+volume = {8},
+year = {2006}
 }

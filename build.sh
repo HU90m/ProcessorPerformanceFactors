@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # My script to compile everything - Requires latexmk and zathura
 
