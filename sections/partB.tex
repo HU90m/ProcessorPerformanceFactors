@@ -88,3 +88,19 @@ both benchmark programs.
     \caption{A comparison of the miss rate for different cache line sizes}
     \label{fig:partb-cacheln}
 \end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partb-2d-crc}
+    \caption{CRC}
+    \label{fig:partb-2d-crc}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partb-2d-susan}
+    \caption{SUSAN}
+    \label{fig:partb-2d-susan}
+\end{subfigure}
+\caption{3D plots of the effects of cache association and cacheline size on miss rates, without data from association=1}
+\end{figure}
