@@ -8,12 +8,17 @@
 
 
 
+\subsection{Introduction}
+
 \begin{itemize}
 \item pipeline stalls
 \item how O3 reduces stalls
-\item CPI < 1
 \end{itemize}
 
+
+\subsection{Method}
+
+The CPU Model from 'TimingSimpleCPU' to 'Deriv03CPU'.
 
 \begin{lstlisting}[
     language=beef,
@@ -22,3 +27,18 @@
 ./gem5/build/X86/gem5.opt -d out_crc_x86 gem5/configs/example/se.py --caches --l1d_size=16kB --l1i_size=8kB --l1d_assoc=64 --cacheline_size=128 --cpu-type=DerivO3CPU -c mibench/telecomm/CRC32/crc_x86 -o mibench/telecomm/adpcm/data/large.pcm
 ./gem5/build/X86/gem5.opt -d out_susan_x86 gem5/configs/example/se.py --caches --l1d_size=16kB --l1i_size=8kB --l1d_assoc=8 --cacheline_size=128 --cpu-type=DerivO3CPU -c mibench/automotive/susan/susan_x86 -o "mibench/automotive/susan/input_large.pgm output_large.smoothing.pgm -s"
 \end{lstlisting}
+
+
+\section{Results}
+
+\begin{itemize}
+\item CPI < 1
+\end{itemize}
+
+
+%\begin{figure}[H]
+%    \centering
+%    \includestandalone[width=.6\textwidth]{graphs/partc-cpi}
+%    \caption{Bananas!!!!}
+%    \label{fig:partc-cpi}
+%\end{figure}
