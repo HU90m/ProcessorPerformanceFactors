@@ -1,0 +1,2 @@
+l1d_size,l1d_assoc,cacheline_size,system.cpu.numCycles,sim_insts,sim_seconds,system.cpu.dcache.overall_miss_rate::total
+16kB,64,128,373065965,719021518,0.186533,0.000002
