@@ -1,3 +1,12 @@
+@article{Michaud2005,
+abstract = {This paper describes cbpl.5, the tag-based, global-history predictor derived from PPM that was rank five at the first Championship Branch Prediction competition. This predictor is a particular instance of a family of predictors which we call GPPM. We introduce GPPM-ideal, an ideal GPPM predictor. It is possible to derive cbp1.5 from GPPM-ideal by introducing a series of degradations corresponding to real-life constraints. We characterize cbp1.5 by quantifying the impact of each degradation on the distributed CBP traces.},
+author = {Michaud, Pierre},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/ppm-like-tag-based-predictor.pdf:pdf},
+journal = {Journal of Instruction-Level Parallelism},
+title = {{A PPM-like, tag-based branch predictor}},
+volume = {7},
+year = {2005}
+}
 @article{Culpepper2005,
 author = {Culpepper, B. J and Gondree, M.},
 file = {:home/xeom/src/ProcessorPerformanceFactors/lit/svms-for-improved-branch-prediction.pdf:pdf},
@@ -7,11 +16,36 @@ title = {{SVMs for Improved Branch Prediction}},
 url = {http://wwwcsif.cs.ucdavis.edu/{~}gondree/papers/gondree{\_}201a{\_}report{\_}04.pdf},
 year = {2005}
 }
-@misc{Engin2004,
-author = {Engin, Ipek and McKee, Sally A. and Schulz, Martin and David, Shai Ben},
-file = {:home/xeom/src/ProcessorPerformanceFactors/lit/on-accurate-and-efficient-perceptron.pdf:pdf},
-title = {{On Accurate and Efficient Perceptron-Based Branch Prediction}},
-year = {2004}
+@inproceedings{Crawford2002,
+author = {Crawford, J.},
+doi = {10.1109/cmpcon.1990.63682},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/i486.pdf:pdf},
+pages = {254--258},
+title = {{The execution pipeline of the Intel i486 CPU}},
+year = {2002}
+}
+@inproceedings{Dwyer1992,
+abstract = {The achievement of fast, precise interrupts and the implementation of multiple levels of branch predictions are two of the problems associated with the dynamic scheduling of instructions for superscalar processors. Their solution is especially difficult if short cycle time operation is desired. We present solutions to these problems through the development of the Fast Dispatch Stack (FDS) system. We show that the FDS is capable of scheduling storage, branch, and register-to-register instructions for concurrent and out-of-order executions; the FDS implements fast and precise interrupts in a natural, efficient way; and it facilitates speculative execution - Instructions preceding and following one or more predicted conditional branch instructions may issue. When necessary, their effects are undone in one machine cycle. We evaluated the FDS system with extensive simulations.},
+author = {Dwyer, Harry and Torng, H. C.},
+booktitle = {Proceedings of the 25th Annual International Symposium on Microarchitecture},
+doi = {10.1145/144965.145834},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/out-of-order-superscalar-with-speculative-execution.pdf:pdf},
+isbn = {0818631759},
+issn = {1050916X},
+pages = {272--281},
+title = {{Out-of-order superscalar processor with speculative execution and fast, precise interrupts}},
+year = {1992}
+}
+@article{Mcfarling1993,
+abstract = {One of the key factors determining computer performance is the degree to which the implementation can take advantage of instruction-level parallelism. Perhaps the most critical limit to this parallelism is the presence of conditional branches that determine which instructions need to be executed next. To increase parallelism, several authors have suggested ways of predicting the direction of conditional branches with hardware that uses the history of previous branches. The different proposed predictors take advantage of different observed patterns in branch behavior. This paper presents a method of combining the advantages of these different types of predictors. The new method uses a history mechanism to keep track of which predictor is most accurate for each branch so that the most accurate predictor can be used. In addition, this paper describes a method of increasing the usefulness of branch history by hashing it together with the branch address. Together, these new techniques are shown to outperform previously known approaches both in terms of maximum prediction accuracy and the prediction accuracy for a given predictor size. Specifically, prediction accuracy reaches 98.1{\%} correct versus 97.1{\%} correct for the most accurate previously known ap- proach. Also, this new approach is typically at least a factor of two smaller than other schemes for a given prediction accuracy. Finally, this new ap- proach allows predictors with a single level of history array access to outperform schemes with multiple levels of history for all but the largest predictor sizes.},
+author = {Mcfarling, Scott},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/combining-branch-predictors.pdf:pdf},
+journal = {Western Research Laboratory},
+number = {June},
+pages = {1--29},
+title = {{Combining Branch Predictors}},
+url = {http://www.hpl.hp.com/techreports/Compaq-DEC/WRL-TN-36.pdf},
+year = {1993}
 }
 @article{Jimenez2014,
 abstract = {I present a branch predictor based on the idea of view-ing branch history from multiple perspectives, combining perceptron-based prediction and TAGE. A hashed perceptron predictor uses previous outcomes and addresses of branches organized in ways beyond the traditional global and local his-tory. This multiperspective perceptron predictor with TAGE achieves a mean mispredictions per 1000 instruction (MPKI) rate of 5.226 given an 8.25KB hardware budget, 4.048 for a 64.25KB hardware budget, and 2.967 for an unlimited hard-ware budget.},
@@ -23,24 +57,11 @@ title = {{Multiperspective Perceptron Predictor with TAGE}},
 url = {https://www.jilp.org/cbp2016/paper/DanielJimenez2.pdf},
 year = {2014}
 }
-@inproceedings{Jimenez2001,
-abstract = {This paper presents a new method for branch prediction. The key idea is to use one of the simplest possible neural networks, the perceptron, as an alternative to the commonly used two-bit counters. Our predictor achieves increased accuracy by making use of long branch histories, which are possible because the hardware resources for our method scale linearly with the history length. By contrast, other purely dynamic schemes require exponential resources. We describe our design and evaluate it with respect to two well known predictors. We show that for a 4 K byte hardware budget our method improves misprediction rates for the SPEC 2000 benchmarks by 10.1{\%} over the gshare predictor. Our experiments also provide a better understanding of the situations in which traditional predictors do and do not perform well. Finally, we describe techniques that allow our complex predictor to operate in one cycle.},
-author = {Jimenez, Daniel A. and Lin, Calvin},
-booktitle = {IEEE High-Performance Computer Architecture Symposium Proceedings},
-doi = {10.1109/hpca.2001.903263},
-file = {:home/xeom/src/ProcessorPerformanceFactors/lit/dynamic-branch-prediction-with-perceptrons.pdf:pdf},
-pages = {197--206},
-title = {{Dynamic branch prediction with perceptrons}},
-year = {2001}
-}
-@article{Michaud2005,
-abstract = {This paper describes cbpl.5, the tag-based, global-history predictor derived from PPM that was rank five at the first Championship Branch Prediction competition. This predictor is a particular instance of a family of predictors which we call GPPM. We introduce GPPM-ideal, an ideal GPPM predictor. It is possible to derive cbp1.5 from GPPM-ideal by introducing a series of degradations corresponding to real-life constraints. We characterize cbp1.5 by quantifying the impact of each degradation on the distributed CBP traces.},
-author = {Michaud, Pierre},
-file = {:home/xeom/src/ProcessorPerformanceFactors/lit/ppm-like-tag-based-predictor.pdf:pdf},
-journal = {Journal of Instruction-Level Parallelism},
-title = {{A PPM-like, tag-based branch predictor}},
-volume = {7},
-year = {2005}
+@misc{Engin2004,
+author = {Engin, Ipek and McKee, Sally A. and Schulz, Martin and David, Shai Ben},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/on-accurate-and-efficient-perceptron.pdf:pdf},
+title = {{On Accurate and Efficient Perceptron-Based Branch Prediction}},
+year = {2004}
 }
 @article{Seznec2007,
 author = {Seznec, Andre},
@@ -50,6 +71,16 @@ pages = {1--13},
 title = {{The L-TAGE Branch Predictor}},
 volume = {9},
 year = {2007}
+}
+@inproceedings{Jimenez2001,
+abstract = {This paper presents a new method for branch prediction. The key idea is to use one of the simplest possible neural networks, the perceptron, as an alternative to the commonly used two-bit counters. Our predictor achieves increased accuracy by making use of long branch histories, which are possible because the hardware resources for our method scale linearly with the history length. By contrast, other purely dynamic schemes require exponential resources. We describe our design and evaluate it with respect to two well known predictors. We show that for a 4 K byte hardware budget our method improves misprediction rates for the SPEC 2000 benchmarks by 10.1{\%} over the gshare predictor. Our experiments also provide a better understanding of the situations in which traditional predictors do and do not perform well. Finally, we describe techniques that allow our complex predictor to operate in one cycle.},
+author = {Jimenez, Daniel A. and Lin, Calvin},
+booktitle = {IEEE High-Performance Computer Architecture Symposium Proceedings},
+doi = {10.1109/hpca.2001.903263},
+file = {:home/xeom/src/ProcessorPerformanceFactors/lit/dynamic-branch-prediction-with-perceptrons.pdf:pdf},
+pages = {197--206},
+title = {{Dynamic branch prediction with perceptrons}},
+year = {2001}
 }
 @article{Seznec2006,
 abstract = {It is now widely admitted that in order to provide state-of-the-art accuracy, a conditional branch predictor must combine several predictions. Recent research has shown that an adder tree is a very effective approach for the prediction combination function. In this paper, we present a more cost effective solution for this prediction combination function for predictors relying on several predictor components indexed with different history lengths. Using GEometric history length as the O-GEHL predictor, the TAGE predictor uses (partially) tagged components as the PPM-like predictor. TAGE relies on (partial) hit-miss detection as the prediction computation function. TAGE provides state-of-the-art prediction accuracy on conditional branches. In particular, at equivalent storage budgets, the TAGE predictor significantly outperforms all the predictors that were presented at the Championship Branch Prediction in december 2004. The accuracy of the prediction of the targets of indirect branches is a major issue on some applications. We show that the principles of the TAGE predictor can be directly applied to the prediction of indirect branches. The ITTAGE predictor (Indirect Target TAgged GEometric history length) significantly outperforms previous state-of-the-art in-direct target branch predictors. Both TAGE and ITTAGE predictors feature tagged predictor components indexed with distinct history lengths forming a geometric series. They can be associated in a single cost-effective predictor, sharing tables and predictor logic, the COTTAGE predictor (Conditional and indirect Target TAgged GEometric history length). {\textcopyright} 2006 AI Access Foundation and Morgan Kaufmann Publishers. All rights reserved.},
