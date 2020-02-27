@@ -2,7 +2,28 @@
 
 \subsection{Introduction \& Background}
 
+The most basic form of cache associativity is Direct Mapped Cache, corresponding to an
+associativity of 1.
+In this case, each address in main memory is mapped to only one location in cache.
+Because each data address doesn't have a choice in what cache cell it can be placed, 
+it can lead to situations where cache is overwritten when there are still spaces in 
+the cache that aren't being used.
 
+A solution to this problem is to use set-associative cache. 
+In this system, a memory address is given a number of cache blocks it can be written to.
+This number of cache blocks is called the associativity of the cache.
+
+When loading a series of data from main memory to the cache, it may be the case that 
+multiple of these data requests are for data which exist consecutively in memory.
+This situation revels an opportunity to speed up the program by not only loading 
+the data you are requesting into the cache, but also at the same time preemptively loading 
+the data located before and after the address of the data that the program just requested.
+
+This can save time as it means some data will be preemptively loaded into the cache right 
+before it is needed.
+However, it can also decrease performance if the program doesn't use data in the order that 
+it exists in memory, because time is wasted loading data into the cache which will go unused 
+by the processor.
 
 \subsection{Method}
 
@@ -13,6 +34,14 @@ of the data cache was set to 16kB.
 For each of these, the l1d\_assoc (data cache association) argument was iterated 
 through the set [1 2 4 8 16 32 64] and the cacheline\_size (cache line size) argument 
 was iterated through the set [16 32 64 128].
+
+The command used to invoke the \texttt{gem5} simulation for the susan benchmark was
+
+\texttt{./build/\${architecture}/gem5.opt configs/example/se.py --l1d\_size=16kB --l1i\_size=8kB --caches --l1d\_assoc=\${assoc} --cacheline\_size=\${cacheline} --cpu-type=TimingSimpleCPU -c ../mibench/automotive/susan/susan -o "../mibench/automotive/susan/input\_large.pgm output\_large.smoothing.pgm -s"}
+
+and for the CRC32 benchmark it was
+
+\texttt{./build/\${architecture}/gem5.opt configs/example/se.py --l1d\_size=16kB --l1i\_size=8kB --caches --l1d\_assoc=\${assoc} --cacheline\_size=\${cacheline} --cpu-type=TimingSimpleCPU -c ../mibench/telecomm/CRC32/crc -o "../mibench/telecomm/adpcm/data/large.pcm > output\_large.txt"}
 
 This produced a dataset of 56 individual simulations with varying cache line sizes and 
 associativities.
@@ -43,7 +72,14 @@ constant 0.02% miss rate from an associativity of 2 onwards.
 
 From the results, it can be seen that increasing the cache line size from 16 to 32 
 improves performance for the susan benchmark, but decreases performance for the CRC32 
-benchmark. Cache line sizes of 64 and 128 only increase the cache miss rate further for 
+benchmark. 
+
+This shows that the susan benchmark uses data more sequentially that the CRC32 benchmark 
+does.
+This is expected because the susan benchmark is used to do image analysis where it will be 
+looking at pixels of the image in the order they are laid out in the picture.
+
+Cache line sizes of 64 and 128 only increase the cache miss rate further for 
 both benchmark programs.
 
 \begin{figure}[H]
@@ -52,6 +88,3 @@ both benchmark programs.
     \caption{A comparison of the miss rate for different cache line sizes}
     \label{fig:partb-cacheln}
 \end{figure}
-
-
-\subsection{Conclusion}
