@@ -9,7 +9,7 @@
             magenta,thick,style=solid,mark=+\\
         },
         xmode=log,
-        axis x line=center,
+        axis x line=bottom,
         axis y line=left,
         xmin=0.63,
         xmax=128,
@@ -29,11 +29,10 @@
         ymajorgrids,
         %enlargelimits=0.15,
         ylabel={Miss Rate (\%)},
-        ylabel style={above left},
         xlabel={Cache Associativity},
-        xlabel style={below right},
         legend cell align={left},
-        legend style={at={(1.0, 1.0)}, anchor={north west}}
+        legend style={at={(0.5, -0.2)}, anchor={north}},
+        ylabel style={at={(-0.06, 0.5)}, anchor={south}}
     ]
 
     \foreach \bench in {crc,susan}

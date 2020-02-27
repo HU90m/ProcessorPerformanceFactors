@@ -57,11 +57,23 @@ From the results, it can be seen that increasing the associativity of the cache 
 1 to 2 greatly improves the miss rate of the processor. After that, increasing the 
 associativity any further has little effect on the overall performance.
 
-\begin{figure}[H]
+
+\begin{figure}[H]%
+\begin{subfigure}{.5\textwidth}
     \centering
-    \includestandalone[width=.6\textwidth]{graphs/partb-assoc}
-    \caption{A comparison of the miss rate for different cache associativities}
+    \includestandalone[width=\textwidth]{graphs/partb-assoc}
+    \caption{For different cache associativities}
     \label{fig:partb-assoc}
+\end{subfigure}%
+\hfill%
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partb-cacheln}
+    \caption{For different cache line sizes}
+    \label{fig:partb-cacheln}
+\end{subfigure}%
+\caption{Graphs showing the average D-Cache miss rate}
+\label{fig:partb-avgs}
 \end{figure}
 
 It can be seen that increasing the associativity can nearly completely eliminate 
@@ -82,25 +94,20 @@ looking at pixels of the image in the order they are laid out in the picture.
 Cache line sizes of 64 and 128 only increase the cache miss rate further for 
 both benchmark programs.
 
-\begin{figure}[H]
-    \centering
-    \includestandalone[width=.6\textwidth]{graphs/partb-cacheln}
-    \caption{A comparison of the miss rate for different cache line sizes}
-    \label{fig:partb-cacheln}
-\end{figure}
 
-\begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
+\begin{figure}[H]%
+\begin{subfigure}{.45\textwidth}
     \centering
     \includestandalone[width=\textwidth]{graphs/partb-2d-crc}
     \caption{CRC}
     \label{fig:partb-2d-crc}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
+\end{subfigure}%
+\hfill%
+\begin{subfigure}{.45\textwidth}
     \centering
     \includestandalone[width=\textwidth]{graphs/partb-2d-susan}
     \caption{SUSAN}
     \label{fig:partb-2d-susan}
-\end{subfigure}
+\end{subfigure}%
 \caption{3D plots of the effects of cache association and cacheline size on miss rates, without data from association=1}
 \end{figure}
