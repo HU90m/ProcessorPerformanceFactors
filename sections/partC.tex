@@ -40,10 +40,10 @@ instruction it is waiting for to complete the Write Back stage before it reaches
 the execution stage. Thus, instead of the pipeline waiting idle for the command
 until the instruction can run, a different instruction is run.  The result being
 better hardware utilisation, and so faster program run times.  This approach is
-effective enough to produce cycles per instruction values below one.
+effective enough to produce cycles per instruction values of below one.
 \cite{Dwyer1992}
 
-Sadly, it is not all fine and dandy. As out of order execution demands a good
+Sadly, it is not all fine and dandy. Out of order execution demands a good
 deal of chip area to store the next instructions and determine a more optimal
 ordering. With this extra area, also comes an increased power requirements.
 
@@ -90,8 +90,8 @@ utilisation.
     \centering
     \includestandalone[width=.6\textwidth]{graphs/partc-cpi}
     \caption{
-        A comparison of two CPUs one with and one without Out of Order
-    execution, using CPI as a performance indicator.
+        A comparison of two CPUs, one with and one without Out of Order
+    execution. CPI is used as a performance indicator.
     }
     \label{fig:partc-cpi}
 \end{figure}
