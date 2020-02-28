@@ -1,0 +1,50 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        width=30em,
+        bar width=7pt,
+        ybar,
+        ymajorgrids,
+        enlargelimits=0.15,
+        nodes near coords,
+        every node near coord/.append style = {
+            rotate=90,
+            anchor=west
+        },
+        symbolic x coords={%
+            CRC,%
+            SUSAN
+        },
+        xticklabels={%
+            ,%
+            CRC,%
+            SUSAN%
+        },
+        legend cell align={left},
+        x tick label style={
+            rotate=-45,
+            anchor=north west
+        },
+        legend style={at={(0.5, -0.3)}, anchor={north}}
+    ]
+
+    \foreach \exec  in {O3,Simple}
+    {
+        \addplot table[
+            col sep=comma,
+            x={bench},
+            y={sim_insts},
+            y expr={\thisrow{system.cpu.numCycles} / \thisrow{sim_insts}},
+        ] {csv/C/\exec.csv};
+        \edef\entry{\exec}
+        \edef\tmp{\noexpand\addlegendentry{\entry}}\tmp
+    }
+
+    \end{axis}
+\end{tikzpicture}
+\end{document}
