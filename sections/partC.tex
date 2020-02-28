@@ -9,20 +9,59 @@
 
 
 \subsection{Introduction}
+So far, the `TimingSimpleCPU' has been used for simulations. For each cycle,
+this CPU `waits' for the instruction to propagate through all the stages of the
+execution path: Instruction Fetch (IF), Instruction Decode (ID), Execute (EX),
+Memory Access, (MEM), and Register Write Back (WB).
 
-\begin{itemize}
-\item pipeline stalls
-\item how O3 reduces stalls
-\end{itemize}
+Pipelining can be was devised to allow higher CPU through put. It does this by
+segmenting the execution path into the five stages mentioned above. This five
+stage `pipeline' waits for each instruction to complete the stage it is
+currently on before moving along to the next stage.  This is far more economical
+because the earlier stages aren't idle as the later stages complete the
+execution of the instruction. Instead they are filled with the next instruction.
+The critical path of the pipeline stages is far shorter than the critical path
+of them combined, allowing for a far greater clock speed.  This allows a CPU to
+achieve a higher throughput.
 
+However, the higher throughput is hindered by pipeline stalls. This is where an
+instruction requires the result of a prior instruction to be executed, and so
+has to wait until the prior instruction completes the final WB stage.  The
+result of this is the entire pipeline being halted until this instruction can be
+executed.
+
+Out of Order execution mitigates this problem by filling these halted and
+otherwise unused instruction cycles, which is done by reordering the
+instructions.  The next instructions of a program are held in a queue.  Each
+instruction continues be held until all its operands are available.  In the
+pipeline stall situation previously discussed, a different instruction would be
+executed before the instruction that stalled the pipeline. This allows the
+instruction it is waiting for to complete the Write Back stage before it reaches
+the execution stage. Thus, instead of the pipeline waiting idle for the command
+until the instruction can run, a different instruction is run.  The result being
+better hardware utilisation, and so faster program run times.  This approach is
+effective enough to produce cycles per instruction values below one.
+\cite{Dwyer1992}
+
+Sadly, it is not all fine and dandy. As out of order execution demands a good
+deal of chip area to store the next instructions and determine a more optimal
+ordering. With this extra area, also comes an increased power requirements.
 
 \subsection{Method}
 
-The CPU Model from `TimingSimpleCPU' to `Deriv03CPU'.
+The x86 architecture with a cache line size of 128 was found to be the best
+performer of part B, and so was selected to be the control in the part C test.
+Both CRC and SUSAN were rerun changing only the CPU model from `TimingSimpleCPU'
+to `DerivO3CPU'.
+
+Unlike `TimingSimpleCPU', the `DerivO3CPU' model employs both piplining and out
+of order execution. A comparison of the CPI for each of these CPU models running
+with all other factors provides a good demonstration of the improvements
+afforded by out of order execution.
 
 \begin{lstlisting}[
     language=beef,
-    caption={The command used to invoke the \texttt{gem5} simulation for part C.}
+    caption={The two commands used to invoke the \texttt{gem5} simulation for part C.}
 ]
 ./gem5/build/X86/gem5.opt -d out_crc_x86 gem5/configs/example/se.py --caches --l1d_size=16kB --l1i_size=8kB --l1d_assoc=64 --cacheline_size=128 --cpu-type=DerivO3CPU -c mibench/telecomm/CRC32/crc_x86 -o mibench/telecomm/adpcm/data/large.pcm
 ./gem5/build/X86/gem5.opt -d out_susan_x86 gem5/configs/example/se.py --caches --l1d_size=16kB --l1i_size=8kB --l1d_assoc=8 --cacheline_size=128 --cpu-type=DerivO3CPU -c mibench/automotive/susan/susan_x86 -o "mibench/automotive/susan/input_large.pgm output_large.smoothing.pgm -s"
@@ -30,13 +69,24 @@ The CPU Model from `TimingSimpleCPU' to `Deriv03CPU'.
 
 
 \subsection{Results}
+Figure \label{fig:partc-cpi} shows well the huge improvement in CPI that can be
+obtained through the implementation of out of order execution with pipelining.
+Of particular note is the reduction of CPI to a value well below one for both
+benchmarks. A CPI value below one is impossible without the implementation of
+pipelining.
+The extent to which the CPI values have decreased verbosely illustrates
+uneconomical use of hardware in the simple CPU as stages lie idle between
+instructions.
 
-\begin{itemize}
-\item CPI < 1
-\end{itemize}
+Another interesting point of note is the difference in improvement between the
+two benchmarks. Out of order execution likely had a greater effect on CRC than
+SUSAN, due to the SUSAN benchmark having a greater program complexity. This
+greater program complexity results in an increased complexity in finding a more
+optimal instruction ordering, due to more complicated interdependencies between
+instructions. Thus CRC was able to be better reordered to maximise hardware
+utilisation.
 
-
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includestandalone[width=.6\textwidth]{graphs/partc-cpi}
     \caption{
