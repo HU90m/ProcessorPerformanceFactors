@@ -6,22 +6,21 @@
 
 \begin{tikzpicture}
     \begin{axis}[
-        width=30em,
-        bar width=7pt,
+        bar width=12pt,
         ybar,
+        width=15em,
+        height=20em,
+        ymax=3,
+        ylabel={Cycles Per Instruction},
         ymajorgrids,
-        enlargelimits=0.15,
+        enlarge x limits=1.0,
+        xtick=data,
         nodes near coords,
         every node near coord/.append style = {
             rotate=90,
             anchor=west
         },
         symbolic x coords={%
-            CRC,%
-            SUSAN
-        },
-        xticklabels={%
-            ,%
             CRC,%
             SUSAN%
         },
@@ -30,21 +29,18 @@
             rotate=-45,
             anchor=north west
         },
-        legend style={at={(0.5, -0.3)}, anchor={north}}
+        legend style={at={(1.05, 0.5)}, anchor={west}}
     ]
-
     \foreach \exec  in {O3,Simple}
     {
         \addplot table[
             col sep=comma,
             x={bench},
-            y={sim_insts},
             y expr={\thisrow{system.cpu.numCycles} / \thisrow{sim_insts}},
         ] {csv/C/\exec.csv};
         \edef\entry{\exec}
         \edef\tmp{\noexpand\addlegendentry{\entry}}\tmp
     }
-
     \end{axis}
 \end{tikzpicture}
 \end{document}

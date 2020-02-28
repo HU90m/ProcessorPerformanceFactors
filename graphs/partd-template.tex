@@ -1,5 +1,5 @@
 
-\newcommand{\partdgraph}[1]{
+\newcommand{\partdgraph}[2]{
 
 \begin{tikzpicture}
     \begin{axis}[
@@ -7,12 +7,15 @@
         bar width=7pt,
         ybar,
         ymajorgrids,
-        enlargelimits=0.15,
+        enlarge x limits=0.2,
         nodes near coords,
         every node near coord/.append style = {
             rotate=90,
             anchor=west
         },
+        ymin=0,
+        xtick=data,
+        ymax=#2,
         symbolic x coords={%
             BiModeBP,%
             TAGE,%
@@ -22,7 +25,6 @@
             MultiperspectivePerceptron64KB
         },
         xticklabels={%
-            ,%
             Bimodal,%
             TAGE,%
             8KB TAGE,%
@@ -44,7 +46,6 @@
         \addplot table[
             col sep=comma,
             x={bp_type},
-            y={sim_insts},
             y expr={#1},
         ] {csv/D/\arch-\bench.csv};
         \edef\entry{\uppercase{\bench}\ running on \uppercase{\arch}}

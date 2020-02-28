@@ -6,8 +6,6 @@
 % \cite{Dwyer1992}    This is a good general citation.
 %
 
-
-
 \subsection{Introduction}
 So far, the `TimingSimpleCPU' has been used for simulations. For each cycle,
 this CPU `waits' for the instruction to propagate through all the stages of the
@@ -40,8 +38,7 @@ instruction it is waiting for to complete the Write Back stage before it reaches
 the execution stage. Thus, instead of the pipeline waiting idle for the command
 until the instruction can run, a different instruction is run.  The result being
 better hardware utilisation, and so faster program run times.  This approach is
-effective enough to produce cycles per instruction values below one.
-\cite{Dwyer1992}
+effective enough to produce cycles per instruction values below one.~\cite{Dwyer1992}
 
 Sadly, it is not all fine and dandy. As out of order execution demands a good
 deal of chip area to store the next instructions and determine a more optimal
@@ -88,7 +85,7 @@ utilisation.
 
 \begin{figure}
     \centering
-    \includestandalone[width=.6\textwidth]{graphs/partc-cpi}
+    \includestandalone[width=.4\textwidth]{graphs/partc-cpi}
     \caption{
         A comparison of two CPUs one with and one without Out of Order
     execution, using CPI as a performance indicator.
