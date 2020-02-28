@@ -42,19 +42,19 @@ effective enough to produce cycles per instruction values of below one.~\cite{Dw
 
 Sadly, it is not all fine and dandy. Out of order execution demands a good
 deal of chip area to store the next instructions and determine a more optimal
-ordering. With this extra area, also comes an increased power requirements.
+ordering. With this extra area, also comes an increased power requirement.
 
 \subsection{Method}
 
 The x86 architecture with a cache line size of 128 was found to be the best
 performer of part B, and so was selected to be the control in the part C test.
-Both CRC and SUSAN were rerun changing only the CPU model from `TimingSimpleCPU'
-to `DerivO3CPU'.
+Both CRC and SUSAN were rerun changing only the CPU model from
+\texttt{TimingSimpleCPU} to \texttt{DerivO3CPU}.
 
-Unlike `TimingSimpleCPU', the `DerivO3CPU' model employs both piplining and out
-of order execution. A comparison of the CPI for each of these CPU models running
-with all other factors provides a good demonstration of the improvements
-afforded by out of order execution.
+Unlike \texttt{TimingSimpleCPU}, the \texttt{DerivO3CPU} model employs both
+piplining and out of order execution. A comparison of the CPI for each of these
+CPU models running with all other factors provides a good demonstration of the
+improvements afforded by out of order execution.
 
 \begin{lstlisting}[
     language=beef,
@@ -76,7 +76,7 @@ afforded by out of order execution.
     \label{fig:partc-cpi}
 \end{figure}
 
-Figure~\label{fig:partc-cpi} shows well the huge improvement in CPI that can be
+Figure~\ref{fig:partc-cpi} shows well the huge improvement in CPI that can be
 obtained through the implementation of out of order execution with pipelining.
 Of particular note is the reduction of CPI to a value well below one for both
 benchmarks. A CPI value below one is impossible without the implementation of
