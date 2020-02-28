@@ -66,7 +66,17 @@ afforded by out of order execution.
 
 
 \subsection{Results}
-Figure \label{fig:partc-cpi} shows well the huge improvement in CPI that can be
+\begin{figure}[H]
+    \centering
+    \includestandalone[width=.4\textwidth]{graphs/partc-cpi}
+    \caption{
+        A comparison of two CPUs, one with and one without Out of Order
+    execution. CPI is used as a performance indicator.
+    }
+    \label{fig:partc-cpi}
+\end{figure}
+
+Figure~\label{fig:partc-cpi} shows well the huge improvement in CPI that can be
 obtained through the implementation of out of order execution with pipelining.
 Of particular note is the reduction of CPI to a value well below one for both
 benchmarks. A CPI value below one is impossible without the implementation of
@@ -83,12 +93,3 @@ optimal instruction ordering, due to more complicated interdependencies between
 instructions. Thus CRC was able to be better reordered to maximise hardware
 utilisation.
 
-\begin{figure}
-    \centering
-    \includestandalone[width=.4\textwidth]{graphs/partc-cpi}
-    \caption{
-        A comparison of two CPUs, one with and one without Out of Order
-    execution. CPI is used as a performance indicator.
-    }
-    \label{fig:partc-cpi}
-\end{figure}

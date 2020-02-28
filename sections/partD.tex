@@ -5,8 +5,8 @@
 
 When a pipelined CPU comes across a branch instruction, it must normally
 block the pipeline until the outcome of the branch is known, so that the
-correct instructions are fetched. This however is slow and inefficient -
-the earlier parts of the pipeline must sit around idle, while the later
+correct instructions are fetched. This is however slow and inefficient -
+the earlier parts of the pipeline stay idle, while the latter
 ones figure out which instructions are next.
 
 A simple solution to this would be to guess the outcome of the branch

@@ -6,19 +6,19 @@ Cache is a necessary part of a processor as it allows frequently used data to be
 close to the processor where it is much quicker to access.
 
 There are multiple levels of cache, commonly seen from levels 1 to 3.
-As the level decreases, the cache size gets smaller but its access time becomes faster.
+As the level decreases, the cache size gets smaller, but its access time becomes faster.
 Excluding registers, level 1 cache is the fastest type of memory and in order to maximize
 its speed it is placed inside the processor.
 Access time for level 1 cache is in the order of 1-2 clock cycles compared to 100 cycles
 to access main memory, the place where currently running programs and all the working
 data are stored.
 
-Cache can be split into two types, one for storing instructions of the programs the
+Cache can be split into two types, one for storing the instructions of the programs the
 processor is running, and one for storing the data the processor is manipulating.
 These are respectively named Instruction Cache and Data Cache.
 
-In this experiment, we are analysing the effect of increasing the size of both the
-Level 1 Instruction Cache and the Level 1 Data Cache.
+In this experiment, we are analysing the effect of changing the size of both the
+Level 1 Instruction Cache, and the Level 1 Data Cache.
 
 \subsection{Method}
 
@@ -42,11 +42,11 @@ argument was iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB, 64kB\}.
 ./build/${architecture}/gem5.opt configs/example/se.py --l1d_size=${l1d} --l1i_size=${l1i} --caches --cpu-type=TimingSimpleCPU -c ../mibench/telecomm/CRC32/crc -o "../mibench/telecomm/adpcm/data/large.pcm > output_large.txt"
 \end{lstlisting}
 
-This produced a dataset of 120 individual simulations with varying data and instruction
+This produced a dataset of 120 individual simulations, with varying data and instruction
 cache sizes.
 Key values from the results of each of these simulations, such as number of cycles,
 number of instructions, and miss rate were scraped from the output files and assembled
-in table format.
+in a table format.
 
 \subsection{Results \& Analysis}
 
