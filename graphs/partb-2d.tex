@@ -3,7 +3,7 @@
         \begin{axis}[
             view={135}{45},
             xlabel={Cacheline Size},
-            ylabel={Association},
+            ylabel={Associativity},
             xmode=log,
             ymode=log,
             colorbar horizontal,
@@ -24,7 +24,7 @@
         ]
             \addplot3[
                 surf
-            ] table [x=CacheLineSize, y=Association, z expr={100*\thisrow{DCacheMissRate}}, col sep=comma] {#1};
+            ] table [x=CacheLineSize, y=Associativity, z expr={100*\thisrow{DCacheMissRate}}, col sep=comma] {#1};
         \end{axis}
     \end{tikzpicture}
 }

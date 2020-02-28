@@ -1,4 +1,4 @@
-Benchmark,Architecture,Association,CacheLineSize,Cycles,Instructions,DCacheMissRate,ICacheMissRate,DCacheMissCycles,ICacheMissCycles,CPI,CycleDiffAssoc,CycleDiffLn
+Benchmark,Architecture,Associativity,CacheLineSize,Cycles,Instructions,DCacheMissRate,ICacheMissRate,DCacheMissCycles,ICacheMissCycles,CPI,CycleDiffAssoc,CycleDiffLn
 
 susan,X86,2,16,1066406732,370373330,0.000442,5E-06,1070978500,137861500,2.879275168,-0.1203743498,0
 susan,X86,2,32,1064445198,370373330,0.000243,3E-06,583923500,86915000,2.873979069,-0.1219923212,-0.001839386363
