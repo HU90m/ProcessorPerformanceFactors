@@ -84,8 +84,8 @@ branch predictor. % ToDO: find out implementation details and write
 Another approach to predicting branches is to try and use a
 neural network to learn and predict whether or not a branch will
 be taken.
-The simplest, and therefore easiest neural network to implement
-efficiently in hardware is a perceptron.
+A simple neural network that can be efficiently implemented in
+hardware is a perceptron.
 This neural network simply makes a prediction from the weighted
 sum of a set of predictors. i.e. for predictors \(\{ x_1, \ldots , x_n \}\),
 and learned weights \(\{ a_1, \ldots , a_n \}\), a prediction, \(\hat{y}\) could

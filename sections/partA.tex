@@ -24,8 +24,8 @@ Level 1 Instruction Cache and the Level 1 Data Cache.
 
 The \texttt{gem5} simulation was performed for both the ARM and X86 architectures, for
 each of the SUSAN and CRC32 benchmark programs.
-For each of these combinations, the l1i\_size (instruction cache size) argument was
-iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB\} and the l1d\_size (data cache size)
+For each of these combinations, the \texttt{l1i\_size} (instruction cache size) argument was
+iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB\} and the \texttt{l1d\_size} (data cache size)
 argument was iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB, 64kB\}.
 
 \begin{lstlisting}[
@@ -42,23 +42,21 @@ argument was iterated through the set \{2kB, 4kB, 8kB, 16kB, 32kB, 64kB\}.
 ./build/${architecture}/gem5.opt configs/example/se.py --l1d_size=${l1d} --l1i_size=${l1i} --caches --cpu-type=TimingSimpleCPU -c ../mibench/telecomm/CRC32/crc -o "../mibench/telecomm/adpcm/data/large.pcm > output_large.txt"
 \end{lstlisting}
 
-
-
 This produced a dataset of 120 individual simulations with varying data and instruction
 cache sizes.
-Key values from the results of each of these simulations, such as number of cycles, 
-number of instructions, and miss rate were scraped from the output files and assembled 
+Key values from the results of each of these simulations, such as number of cycles,
+number of instructions, and miss rate were scraped from the output files and assembled
 in table format.
 
 \subsection{Results \& Analysis}
 
 \subsubsection{Data Cache Size}
 
-From the results, it can be seen that increasing the size of the data cache from 2kB to 
-4kB greatly improves the performance of the processor, however the gains rapidly 
+From the results, it can be seen that increasing the size of the data cache from 2kB to
+4kB greatly improves the performance of the processor, however the gains rapidly
 decrease for larger sizes of data cache.
 
-The X86 chip running the CRC32 benchmark program sees the greatest improvements in 
+The X86 chip running the CRC32 benchmark program sees the greatest improvements in
 performance.
 
 \begin{figure}[H]
@@ -70,7 +68,7 @@ performance.
 
 \subsubsection{Instruction Cache Size}
 
-From the results, it can be seen that increasing the size of the instruction cache 
+From the results, it can be seen that increasing the size of the instruction cache
 slightly improves the performance of the processor.
 
 \begin{figure}[H]
@@ -81,5 +79,5 @@ slightly improves the performance of the processor.
 \end{figure}
 
 The X86 programs see more improvement than the ARM programs.
-This may be due to the fact that the size of the X86 binaries are around twice that of 
+This may be due to the fact that the size of the X86 binaries are around twice that of
 the ARM binaries, so there is a need for more instruction cache.
