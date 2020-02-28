@@ -73,16 +73,6 @@ associativity any further has little effect on the overall performance.
     \label{fig:partb-assoc}
 \end{subfigure}%
 \hfill%
-\begin{subfigure}{.45\textwidth}
-    \centering
-    \includestandalone[width=\textwidth]{graphs/partb-cacheln}
-    \caption{For different cache line sizes}
-    \label{fig:partb-cacheln}
-\end{subfigure}%
-\hfill\null%
-\caption{Graphs showing the average D-Cache miss rate}
-\label{fig:partb-avgs}
-\end{figure}
 
 It can be seen that increasing the associativity can nearly completely eliminate
 cache misses when running the CRC32 benchmark, however the SUSAN benchmark sees a near
@@ -90,15 +80,16 @@ constant 0.02% miss rate from an associativity of 2 onwards.
 
 \subsubsection{Cache Line Size}
 
-From the results, it can be seen that increasing the cache line size from 16 to 32
+The associativity of the cache makes a large difference on the effects of an increased cache
+line size.
+
+For an associativity of 1, it can be seen that increasing the cache line size from 16 to 32
 improves performance for the SUSAN benchmark, but decreases performance for the CRC32
 benchmark.
-
 This shows that the SUSAN benchmark uses data more sequentially that the CRC32 benchmark
 does.
 This is expected because the SUSAN benchmark is used to do image analysis where it will be
 looking at pixels of the image in the order they are laid out in the picture.
-
 Cache line sizes of 64 and 128 only increase the cache miss rate further for
 both benchmark programs.
 
@@ -106,16 +97,37 @@ both benchmark programs.
 \hfill%
 \begin{subfigure}{.4\textwidth}
     \centering
-    \includestandalone[width=\textwidth]{graphs/partb-2d-crc}
+    \includestandalone[width=\textwidth]{graphs/partb-2d1-crc}
     \caption{CRC}
-    \label{fig:partb-2d-crc}
+    \label{fig:partb-2d1-crc}
 \end{subfigure}%
 \hfill%
 \begin{subfigure}{.4\textwidth}
     \centering
-    \includestandalone[width=\textwidth]{graphs/partb-2d-susan}
+    \includestandalone[width=\textwidth]{graphs/partb-2d1-susan}
     \caption{SUSAN}
-    \label{fig:partb-2d-susan}
+    \label{fig:partb-2d1-susan}
+\end{subfigure}%
+\hfill\null%
+\caption{3D plots of the effects of cache association and cacheline size on miss rates, without data from association=1}
+\end{figure}
+
+For larger associativities, as cache line size increases, the performance increases.
+
+\begin{figure}[H]%
+\hfill%
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partb-2d8-crc}
+    \caption{CRC}
+    \label{fig:partb-2d8-crc}
+\end{subfigure}%
+\hfill%
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partb-2d8-susan}
+    \caption{SUSAN}
+    \label{fig:partb-2d8-susan}
 \end{subfigure}%
 \hfill\null%
 \caption{3D plots of the effects of cache association and cacheline size on miss rates, without data from association=1}

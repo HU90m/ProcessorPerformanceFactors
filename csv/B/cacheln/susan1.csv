@@ -1,0 +1,5 @@
+Benchmark,LineSize,Miss Rate,MissPercent
+susan,16,0.003888,0.3888
+susan,32,0.004495,0.4495
+susan,64,0.006922,0.6922
+susan,128,0.012046,1.2046
