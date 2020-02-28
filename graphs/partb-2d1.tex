@@ -1,0 +1,48 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{pgfplots}
+
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+        cycle list={
+            teal,thick,mark=+\\
+            magenta,thick,style=solid,mark=+\\
+        },
+        xmode=log,
+        axis x line=bottom,
+        axis y line=left,
+        xmin=8,
+        xmax=256,
+        ymin=0,
+        ymax=2,
+        xtick={16,32,64,128},
+        xticklabels={%
+            16,%
+            32,%
+            64,%
+            128%
+        },
+        ytick={0.0,0.2,...,2},
+        ymajorgrids,
+        %enlargelimits=0.15,
+        ylabel={Miss Rate (\%)},
+        xlabel={Cache Line Size},
+        legend cell align={left},
+        legend style={at={(0.5, -0.2)}, anchor={north}},
+        ylabel style={at={(-0.06, 0.5)}, anchor={south}}
+    ]
+
+    \foreach \bench in {crc1,susan1}
+    {
+        \addplot table[
+            col sep=comma,
+            x={LineSize},
+            y={MissPercent},
+        ] {csv/B/cacheln/\bench.csv};
+        \edef\entry{\uppercase{\bench}\ running on X86}
+        \edef\tmp{\noexpand\addlegendentry{\entry}}\tmp
+    }
+
+    \end{axis}
+\end{tikzpicture}
+\end{document}
