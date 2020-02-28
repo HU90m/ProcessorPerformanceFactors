@@ -1,4 +1,4 @@
-Benchmark,Architecture,Association,CacheLineSize,Cycles,Instructions,DCacheMissRate,ICacheMissRate,DCacheMissCycles,ICacheMissCycles,CPI,CycleDiffAssoc,CycleDiffLn
+Benchmark,Architecture,Associativity,CacheLineSize,Cycles,Instructions,DCacheMissRate,ICacheMissRate,DCacheMissCycles,ICacheMissCycles,CPI,CycleDiffAssoc,CycleDiffLn
 
 CRC32,X86,2,16,1924018568,585939090,0.000206,5E-06,2097311000,187307500,3.283649446,0.1436160729,0
 CRC32,X86,2,32,1922485284,585939090,0.000125,3E-06,1450960000,121862500,3.281032648,0.1427047052,0.001029266952
