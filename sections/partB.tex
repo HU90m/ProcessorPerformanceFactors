@@ -1,6 +1,13 @@
 % This part is 30 marks and should not exceed two pages including figures.
 
 \subsection{Introduction \& Background}
+\begin{wrapfigure}{R}{.5\textwidth}
+    \centering
+    \includestandalone[width=.4\textwidth]{graphs/partb-assoc}
+    \caption{A graph of cache misses against cache associativity}
+    \label{fig:partb-assoc}
+\end{wrapfigure}%
+\subsubsection{Cache Line Size}
 
 The most basic form of cache associativity is Direct Mapped Cache, corresponding to an
 associativity of 1.
@@ -64,18 +71,9 @@ it can be seen that increasing the associativity of the cache from
 1 to 2 greatly improves the miss rate of the processor. After that, increasing the 
 associativity any further has little effect on the overall performance.
 
-\begin{figure}[H]
-    \centering
-    \includestandalone[width=.4\textwidth]{graphs/partb-assoc}
-    \caption{For different cache associativities}
-    \label{fig:partb-assoc}
-\end{figure}%
-
 It can be seen that increasing the associativity can nearly completely eliminate
 cache misses when running the CRC32 benchmark, however the SUSAN benchmark sees a near
 constant 0.02\% miss rate from an associativity of 2 onwards.
-
-\subsubsection{Cache Line Size}
 
 The associativity of the cache makes a large difference on the effects of an increased cache
 line size.
@@ -92,7 +90,8 @@ there is an increased chance of the processor overwriting actively used data in 
 With a larger associativity however, this effect is negated as the cache is able to choose
 from many different cache blocks to write the data in.
 
-For the SUSAN benchmark, cache line size contributes far more significantly to the cache
+As can be seen in Figures~\ref{fig:partb-2d-crc} and~\ref{fig:partb-2d-susan},
+for the SUSAN benchmark, cache line size contributes far more significantly to the cache
 miss rate than cache associativity. This makes sense, as although the SUSAN benchmark
 does not access memory in the very sequential manner of the CRC algorithm, it will process
 pixels in similar areas of the image at once.
@@ -108,21 +107,37 @@ memory in a far less predictable manner, and since the cache is of a limited siz
 never have all of the required data ready for the SUSAN benchmark.
 
 \begin{figure}[H]%
+\centering%
 \hfill%
 \begin{subfigure}{.4\textwidth}
     \centering
     \includestandalone[width=\textwidth]{graphs/partb-2d1}
-    \caption{Associativity=1}
+    \caption{Changing cacheline size with Associativity=1}
     \label{fig:partb-2d1}
 \end{subfigure}%
 \hfill%
 \begin{subfigure}{.4\textwidth}
     \centering
     \includestandalone[width=\textwidth]{graphs/partb-2d8}
-    \caption{Associativity=8}
+    \caption{Changing cacheline size with Associativity=8}
     \label{fig:partb-2d8}
 \end{subfigure}%
 \hfill\null%
-\caption{The effects of cacheline size on miss rates, for an associativity of 1 and 8}
+\vskip\baselineskip\hfill%
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partb-2d-susan}
+    \caption{Changing cacheline size and associativity for the SUSAN benchmark}
+    \label{fig:partb-2d-susan}
+\end{subfigure}%
+\hfill%
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \includestandalone[width=\textwidth]{graphs/partb-2d-crc}
+    \caption{Changing cacheline size and associativity for the CRC benchmark}
+    \label{fig:partb-2d-crc}
+\end{subfigure}%
+\hfill\null%
+\caption{The effects of changing cacheline size and associativity on cache miss rate}
 \label{fig:partb-cacheline}
 \end{figure}
