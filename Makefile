@@ -1,4 +1,4 @@
-report.pdf: report.tex refs.bib $(CONTENT)
+report.pdf: report.tex refs.bib
 	echo "" | pdflatex report
 	echo "" | bibtex report 
 	echo "" | pdflatex report

@@ -63,20 +63,16 @@ From the results, it can be seen that increasing the associativity of the cache 
 1 to 2 greatly improves the miss rate of the processor. After that, increasing the 
 associativity any further has little effect on the overall performance.
 
-
-\begin{figure}[H]%
-\hfill%
-\begin{subfigure}{.45\textwidth}
+\begin{figure}[H]
     \centering
-    \includestandalone[width=\textwidth]{graphs/partb-assoc}
+    \includestandalone[width=.6\textwidth]{graphs/partb-assoc}
     \caption{For different cache associativities}
     \label{fig:partb-assoc}
-\end{subfigure}%
-\hfill%
+\end{figure}%
 
 It can be seen that increasing the associativity can nearly completely eliminate
 cache misses when running the CRC32 benchmark, however the SUSAN benchmark sees a near
-constant 0.02% miss rate from an associativity of 2 onwards.
+constant 0.02\% miss rate from an associativity of 2 onwards.
 
 \subsubsection{Cache Line Size}
 
@@ -93,42 +89,27 @@ looking at pixels of the image in the order they are laid out in the picture.
 Cache line sizes of 64 and 128 only increase the cache miss rate further for
 both benchmark programs.
 
-\begin{figure}[H]%
-\hfill%
-\begin{subfigure}{.4\textwidth}
-    \centering
-    \includestandalone[width=\textwidth]{graphs/partb-2d1-crc}
-    \caption{CRC}
-    \label{fig:partb-2d1-crc}
-\end{subfigure}%
-\hfill%
-\begin{subfigure}{.4\textwidth}
-    \centering
-    \includestandalone[width=\textwidth]{graphs/partb-2d1-susan}
-    \caption{SUSAN}
-    \label{fig:partb-2d1-susan}
-\end{subfigure}%
-\hfill\null%
-\caption{3D plots of the effects of cache association and cacheline size on miss rates, without data from association=1}
-\end{figure}
-
 For larger associativities, as cache line size increases, the performance increases.
+This result is expected because with an associativity of 1 and a large cache line size, 
+there is an increased chance of the processor overwriting actively used data in cache.
+With a larger associativity however, this effect is negated as the cache is able to choose 
+from many different cache blocks to write the data in.
 
 \begin{figure}[H]%
 \hfill%
 \begin{subfigure}{.4\textwidth}
     \centering
-    \includestandalone[width=\textwidth]{graphs/partb-2d8-crc}
-    \caption{CRC}
-    \label{fig:partb-2d8-crc}
+    \includestandalone[width=\textwidth]{graphs/partb-2d1}
+    \caption{Associativity=1}
+    \label{fig:partb-2d1}
 \end{subfigure}%
 \hfill%
 \begin{subfigure}{.4\textwidth}
     \centering
-    \includestandalone[width=\textwidth]{graphs/partb-2d8-susan}
-    \caption{SUSAN}
-    \label{fig:partb-2d8-susan}
+    \includestandalone[width=\textwidth]{graphs/partb-2d8}
+    \caption{Associativity=8}
+    \label{fig:partb-2d8}
 \end{subfigure}%
 \hfill\null%
-\caption{3D plots of the effects of cache association and cacheline size on miss rates, without data from association=1}
+\caption{The effects of cacheline size on miss rates, for an associativity of 1 and 8}
 \end{figure}
